@@ -1,5 +1,8 @@
+using Dapper.Contrib.Extensions;
+
 namespace Tibox.Models
 {
+    [Table("Customer")]
     public class Customer
     {
         public int Id { get; set; }                
