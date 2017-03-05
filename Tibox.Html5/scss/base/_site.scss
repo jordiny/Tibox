@@ -1,0 +1,34 @@
+﻿body {
+    background-color:$background-color;
+    
+    padding-left:2rem;
+    padding-right:2rem;
+
+    @include break-point(md){
+    padding-left:4rem;
+    padding-right:4rem;
+    }
+    
+    header{
+        position:absolute;
+        right:0;
+        left:0;
+        top:0;
+        background-color:$side-color-black;
+        height:4rem;
+    }
+    footer{
+         background-color:$side-color-black;
+         color:$site-colo-white;
+         height:2rem;
+         position:absolute;
+         right:0;
+         left:0;
+         bottom:0;
+         text-align:center;
+    }
+    section{
+        padding-top:5rem;
+
+    }
+}
