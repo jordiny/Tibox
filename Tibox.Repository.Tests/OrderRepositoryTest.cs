@@ -27,7 +27,38 @@ namespace Tibox.DataAccess.Tests
             Assert.AreEqual(result.Count() > 0, true);
         }
 
-        
+        [TestMethod]
+        public void Insert_Order()
+        {
+            var Order = new Order
+            {
+                OrderDate = DateTime.Now,
+                OrderNumber = "543208",
+                CustomerId = 1
+            };
+
+            var result = _unitOfWork.Orders.Insert(Order);
+            Assert.AreEqual(result > 0, true);
+        }
+        [TestMethod]
+        public void Update_Order()
+        {
+            Order Order = _unitOfWork.Orders.GetEntityById(1);
+
+            Assert.AreEqual(Order != null, true);
+
+            Assert.AreEqual(_unitOfWork.Orders.Update(Order), true);
+        }
+
+        [TestMethod]
+        public void Delete_Order()
+        {
+
+            Order Order = _unitOfWork.Orders.GetEntityById(1);
+            Assert.AreEqual(Order != null, true);
+
+            Assert.AreEqual(_unitOfWork.Orders.Delete(Order), true);
+        }
         [TestMethod]
         public void Get_Order_By_Id()
         {
@@ -36,7 +67,7 @@ namespace Tibox.DataAccess.Tests
             Assert.AreEqual(result != null, true);
         }
         [TestMethod]
-        public void Search_By_Names()
+        public void Order_By_OrderNumber()
         {
 
             var Order = _unitOfWork.Orders.OrderByOrderNumber("543207");
@@ -45,7 +76,7 @@ namespace Tibox.DataAccess.Tests
             Assert.AreEqual(Order.Id, 830); 
         }
         [TestMethod]
-        public void Order_With_Orders()
+        public void Order_With_OrderItems()
         {
 
             var Order = _unitOfWork.Orders.OrderWithOrderItems(830);
