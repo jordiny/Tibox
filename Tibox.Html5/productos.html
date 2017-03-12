@@ -4,7 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
     <title>Bienvenidos a Tibox Web Site</title>
-    <link href="scss/style/styles.min.css" rel="stylesheet" />
+    <script src="components/jquery/jquery-3.1.1.min.js"></script>
+    <link href="components/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="components/bootstrap/js/bootstrap.js"></script>
+    <link href="components/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+    <link href="styles/styles.min.css" rel="stylesheet" />
 </head>
 <body>
     <header>
@@ -22,14 +27,34 @@
             </ul>
         </nav>
     </header>
-    <h3>Nuestros productos.</h3>
     <section>
+        <h3>Nuestros productos.</h3>
+    </section>
+    <section>
+        <video preload="auto" width="320" height="240" id="video">
+            <source src="html5.webm" type="video/webm" />
+            <source src="html5.mp4" type="video/mp4" media="" />
+        </video>
+        <div>
+            <button class="btn btn-success" onclick="tibox.video.play();">
+                <i class="fa fa-play" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-success" onclick="tibox.video.pause();">
+                <i class="fa fa-pause" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-success" onclick="tibox.video.stop();">
+                <i class="fa fa-stop" aria-hidden="true"></i>
+            </button>
+        </div>
+    </section>
+
+    <!--<section>
         <video width="320" height="240" controls>
             <source src="html5.webm" type="video/webm">
             <source src="html5.mp4" type="video/mp4"> Your browser does not support the video tag.
 
         </video>
-    </section>
+    </section>-->
     <section>
         <audio controls>
             <source src="Kalimba.mp3" type="audio/mpeg"> Your browser does not support the audio element.
@@ -38,6 +63,8 @@
     <footer>
         Nuestra Dirección
     </footer>
+    <script src="scripts/index.js" type="text/javascript"></script>
+    <script src="scripts/video.js" type="text/javascript"></script>
 </body>
 </html>
 
