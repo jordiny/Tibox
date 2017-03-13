@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tibox.UnitOfWork", "Tibox.U
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aprendizaje", "Aprendizaje", "{C0DD8CA1-6725-400C-8704-F3306BF0F9BE}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Tibox.Html5(2)", "Tibox.Html5\", "{1D978114-F4C5-4177-AC21-FE202C451696}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Tibox.Html5", "Tibox.Html5\", "{1D978114-F4C5-4177-AC21-FE202C451696}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_62607"
@@ -36,6 +36,12 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Tibox.Html5(2)", "Tibox.Htm
 		SlnRelativePath = "Tibox.Html5\"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{A9C6FA66-A491-471D-AD90-09B19A5F0B93}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{0165183E-DE0F-4F24-8DCB-3F5F6F54061D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tibox.Mvc", "Tibox.Mvc\Tibox.Mvc.csproj", "{01B6CA57-DCF9-430A-87F5-9CE8946279B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,12 +69,20 @@ Global
 		{1D978114-F4C5-4177-AC21-FE202C451696}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D978114-F4C5-4177-AC21-FE202C451696}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{1D978114-F4C5-4177-AC21-FE202C451696}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{01B6CA57-DCF9-430A-87F5-9CE8946279B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01B6CA57-DCF9-430A-87F5-9CE8946279B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01B6CA57-DCF9-430A-87F5-9CE8946279B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01B6CA57-DCF9-430A-87F5-9CE8946279B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{76D2C39B-04A7-4297-8978-1D8ECBD8CA67} = {0165183E-DE0F-4F24-8DCB-3F5F6F54061D}
+		{6FFB353E-3E31-4382-B2B5-574198E8011C} = {0165183E-DE0F-4F24-8DCB-3F5F6F54061D}
 		{9BA60CA1-0CBB-4DB0-AA81-99D322C9AF26} = {F2AA57BC-FECD-4A12-869B-A717957A1527}
+		{999C3AA3-738F-4E7F-A207-61F4BFC4F7B1} = {0165183E-DE0F-4F24-8DCB-3F5F6F54061D}
 		{1D978114-F4C5-4177-AC21-FE202C451696} = {C0DD8CA1-6725-400C-8704-F3306BF0F9BE}
+		{01B6CA57-DCF9-430A-87F5-9CE8946279B8} = {A9C6FA66-A491-471D-AD90-09B19A5F0B93}
 	EndGlobalSection
 EndGlobal
