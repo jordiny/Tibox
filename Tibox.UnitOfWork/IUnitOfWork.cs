@@ -9,13 +9,12 @@ using Tibox.Repository.Northwind;
 
 namespace Tibox.UnitOfWork
 {
-   public interface IUnitOfWork
+    public interface IUnitOfWork
     {
-        ICustomerRepository Customers { get; } 
+        ICustomerRepository Customers { get; }
         IOrderRepository Orders { get; }
         IRepository<OrderItem> OrderItems { get; }
         IRepository<Product> Products { get; }
         IRepository<Supplier> Suppliers { get; }
- 
     }
 }

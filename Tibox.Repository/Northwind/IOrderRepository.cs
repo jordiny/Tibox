@@ -7,9 +7,9 @@ using Tibox.Models;
 
 namespace Tibox.Repository.Northwind
 {
-  public  interface IOrderRepository : IRepository<Order>
+    public interface IOrderRepository: IRepository<Order>
     {
-        Order OrderByOrderNumber(string  OrderNumber);
-        Order OrderWithOrderItems(int Id);
+        Order OrderWithOrderItems(int id);
+        Order OrderByOrderNumber(string orderNumber);
     }
 }

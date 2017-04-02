@@ -1,35 +1,85 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Tibox.Models;
+using Tibox.Mvc.FilterActions;
 using Tibox.UnitOfWork;
 
 namespace Tibox.Mvc.Controllers
-{
-    public class CustomerController : Controller
-    {
-        private readonly TiboxUnitOfWork _unit;
-        public CustomerController()
+{    
+    [RoutePrefix("Customer")]
+    public class CustomerController : BaseController
+    {        
+        public CustomerController(IUnitOfWork unit): base(unit)
         {
-            _unit = new TiboxUnitOfWork();
         }
-        // GET: Customer
+
         public ActionResult Index()
-        { 
+        {
+        
             return View(_unit.Customers.GetAll());
         }
-        public ActionResult Create()
+
+        public PartialViewResult Create()
         {
-            return View();
+            return PartialView();
         }
+
         [HttpPost]
         public ActionResult Create(Customer customer)
-        {   
-            var id=    _unit.Customers.Insert(customer);
-            if (id > 0) return RedirectToAction("Index");
-            return View(customer);
+        {
+            if (!ModelState.IsValid) return PartialView("Create", customer);
+            var id = _unit.Customers.Insert(customer);
+            return RedirectToAction("Index");
+        }
+
+        public PartialViewResult Edit(int id)
+        {
+            return PartialView(_unit.Customers.GetEntityById(id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Customer customer)
+        {
+            if (!ModelState.IsValid) return PartialView("Edit", customer);
+            var id = _unit.Customers.Update(customer);
+            return RedirectToAction("Index");
+        }
+
+        public PartialViewResult Delete(int id)
+        {
+            return PartialView(_unit.Customers.GetEntityById(id));
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Customer customer)
+        {
+            var id = _unit.Customers.Delete(customer);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Error()
+        {
+            throw new TimeZoneNotFoundException();
+        }
+
+        [Route("Count/{rows:int}")]
+        public JsonResult Count(int rows)
+        {
+            var totalRecords = _unit.Customers.Count();
+            var totalPages = totalRecords % rows != 0 ? (totalRecords / rows) + 1 : totalRecords / rows;
+            var page = new
+            {
+                TotalPages = totalPages
+            };
+            return Json(page, JsonRequestBehavior.AllowGet);
+        }
+
+        [Route("List/{page:int}/{rows:int}")]
+        public PartialViewResult List(int page, int rows)
+        {
+            var startRecord = ((page - 1) * rows) + 1;
+            var endRecord = page * rows;
+            return PartialView(_unit.Customers.PagedList(startRecord, endRecord));
         }
     }
 }

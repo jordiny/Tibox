@@ -7,4 +7,3 @@
     };
     document.getElementById("date").innerHTML = tibox.Index.currentYear();
 })(window.tibox = window.tibox || {});
- 

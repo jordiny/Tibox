@@ -1,91 +1,90 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tibox.Models;
-using Tibox.Repository;
 using Tibox.UnitOfWork;
 
 namespace Tibox.DataAccess.Tests
 {
     [TestClass]
-   public class OrderRepositoryTest
+    public class OrderRepositoryTest
     {
         private readonly IUnitOfWork _unitOfWork;
-
-
         public OrderRepositoryTest()
         {
             _unitOfWork = new TiboxUnitOfWork();
         }
+
         [TestMethod]
         public void Get_All_Orders()
         {
-            var result = _unitOfWork.Orders.GetAll();
-            Assert.AreEqual(result.Count() > 0, true);
+            var orderList = _unitOfWork.Orders.GetAll();
+            Assert.AreEqual(orderList.Count() > 0, true);
         }
 
         [TestMethod]
         public void Insert_Order()
         {
-            var Order = new Order
+            var order = new Order
             {
-                OrderDate = DateTime.Now,
-                OrderNumber = "543208",
-                CustomerId = 1
+                CustomerId=1,
+                OrderDate=DateTime.Now,
+                OrderNumber="99999",
+                TotalAmount=200                                
             };
-
-            var result = _unitOfWork.Orders.Insert(Order);
+            var result = _unitOfWork.Orders.Insert(order);
             Assert.AreEqual(result > 0, true);
         }
+
         [TestMethod]
-        public void Update_Order()
+        public void First_ORder_By_Id()
         {
-            Order Order = _unitOfWork.Orders.GetEntityById(1);
+            var order = _unitOfWork.Orders.GetEntityById(1);
+            Assert.AreEqual(order != null, true);
+                        
+            Assert.AreEqual(order.Id, 1);
+            Assert.AreEqual(order.CustomerId, 85);
+            Assert.AreEqual(order.TotalAmount, 440);
 
-            Assert.AreEqual(Order != null, true);
-
-            Assert.AreEqual(_unitOfWork.Orders.Update(Order), true);
         }
 
         [TestMethod]
         public void Delete_Order()
         {
+            var customer = _unitOfWork.Orders.GetEntityById(831);
+            Assert.AreEqual(customer != null, true);
 
-            Order Order = _unitOfWork.Orders.GetEntityById(1);
-            Assert.AreEqual(Order != null, true);
-
-            Assert.AreEqual(_unitOfWork.Orders.Delete(Order), true);
+            Assert.AreEqual(_unitOfWork.Orders.Delete(customer), true);
         }
+
         [TestMethod]
-        public void Get_Order_By_Id()
+        public void Update_Order()
         {
+            var order = _unitOfWork.Orders.GetEntityById(1);
+            Assert.AreEqual(order != null, true);
 
-            var result = _unitOfWork.Orders.GetEntityById(1);
-            Assert.AreEqual(result != null, true);
+            Assert.AreEqual(_unitOfWork.Orders.Update(order), true);
         }
+
         [TestMethod]
         public void Order_By_OrderNumber()
         {
-
-            var Order = _unitOfWork.Orders.OrderByOrderNumber("543207");
-            Assert.AreEqual(Order != null, true);
-
-            Assert.AreEqual(Order.Id, 830); 
+            var order = _unitOfWork.Orders.OrderByOrderNumber("543207");
+            Assert.AreEqual(order != null, true);
+            
+            Assert.AreEqual(order.Id, 830);
+            Assert.AreEqual(order.CustomerId, 65);
+            Assert.AreEqual(order.TotalAmount, Convert.ToDecimal(1374.60));
         }
+
         [TestMethod]
-        public void Order_With_OrderItems()
+        public void Customer_With_Orders()
         {
+            var order = _unitOfWork.Orders.OrderWithOrderItems(1);
+            Assert.AreEqual(order != null, true);
 
-            var Order = _unitOfWork.Orders.OrderWithOrderItems(830);
-            Assert.AreEqual(Order != null, true);
-
-            Assert.AreEqual(Order.OrderItems.Any(), true); //almenos 1 ordenItem
-
-            Assert.AreEqual(Order.Id, 830);
-             
+            Assert.AreEqual(order.OrderItems.Any(), true);
         }
+
     }
 }

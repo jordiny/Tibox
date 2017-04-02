@@ -10,7 +10,6 @@ using Tibox.Repository.Northwind;
 namespace Tibox.UnitOfWork
 {
     public class TiboxUnitOfWork : IUnitOfWork, IDisposable
-
     {
         public TiboxUnitOfWork()
         {
@@ -18,18 +17,17 @@ namespace Tibox.UnitOfWork
             Orders = new OrderRepository();
             OrderItems = new BaseRepository<OrderItem>();
             Products = new BaseRepository<Product>();
-            Suppliers = new BaseRepository<Supplier>();
+            Suppliers = new BaseRepository<Supplier>();            
         }
         public ICustomerRepository Customers { get; private set; }
         public IOrderRepository Orders { get; private set; }
         public IRepository<OrderItem> OrderItems { get; private set; }
         public IRepository<Product> Products { get; private set; }
         public IRepository<Supplier> Suppliers { get; private set; }
+
         public void Dispose()
         {
             this.Dispose();
         }
-
-        
     }
 }

@@ -1,10 +1,17 @@
-CREATE PROCEDURE  [dbo].[CustomerSearchByNames]
-@firstName nVarchar(40),
-@lastName nVarchar(40)
-As
-BEGIN
-SET NOCOUNT ON;
-SELECT Id,FirstName,LastName,City,Country,Phone FROM Customer
-where FirstName=@firstName and LastName=@lastName
-SET NOCOUNT OFF;
+CREATE PROCEDURE dbo.CustomerSearchByNames
+	@firstName nvarchar(40),
+	@lastName nvarchar(40)
+AS
+BEGIN	
+	SET NOCOUNT ON;
+	SELECT [Id]
+      ,[FirstName]
+      ,[LastName]
+      ,[City]
+      ,[Country]
+      ,[Phone]
+	  FROM dbo.Customer
+	  WHERE FirstName=@firstName AND LastName=@lastName
+	SET NOCOUNT OFF;
 END
+GO

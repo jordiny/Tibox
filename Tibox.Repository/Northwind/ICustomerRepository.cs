@@ -7,9 +7,11 @@ using Tibox.Models;
 
 namespace Tibox.Repository.Northwind
 {
-   public interface ICustomerRepository: IRepository<Customer>
+    public interface ICustomerRepository : IRepository<Customer>
     {
         Customer SearchByNames(string firstName, string lastName);
         Customer CustomerWithOrders(int id);
+        IEnumerable<Customer> PagedList(int startRow, int endRow);
+        int Count();
     }
 }

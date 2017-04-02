@@ -1,11 +1,11 @@
 ﻿body {
   background-color: #E6E6FA;
-  padding-left: 2rem;
-  padding-right: 2rem; }
+  margin-left: 2rem;
+  margin-right: 2rem; }
   @media (min-width: 768px) {
     body {
-      padding-left: 5rem;
-      padding-right: 5rem; } }
+      margin-left: 5rem;
+      margin-right: 5rem; } }
   body header {
     position: fixed;
     right: 0;
@@ -15,7 +15,7 @@
     background-color: #000;
     height: 4rem; }
   body footer {
-    background-color: #000;
+    background: #000;
     color: #fff;
     height: 2rem;
     position: fixed;
@@ -34,6 +34,9 @@
   margin-top: 10px;
   width: 40px;
   height: auto; }
+
+input:invalid {
+  border: 2px solid red; }
 
 .button-base, .menu-title {
   display: block;

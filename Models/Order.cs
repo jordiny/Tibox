@@ -1,6 +1,7 @@
 using Dapper.Contrib.Extensions;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Tibox.Models
 {
@@ -8,6 +9,7 @@ namespace Tibox.Models
     public class Order
     {
         public int Id { get; set; }
+        [DataType(DataType.DateTime)]
         public DateTime OrderDate { get; set; }        
         public string OrderNumber { get; set; }
         public int CustomerId { get; set; }
