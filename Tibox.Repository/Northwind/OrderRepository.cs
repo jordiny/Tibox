@@ -1,4 +1,6 @@
 ﻿using Dapper;
+using Dapper.Contrib.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -40,6 +42,34 @@ namespace Tibox.Repository.Northwind
                 }
             }
         }
-        
+
+        public bool SaveOrderAndOrderItems(Order order, IEnumerable<OrderItem> items)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        var id = (int)connection.Insert(order, transaction);
+                        foreach (var orderItem in items)
+                        {
+                            orderItem.OrderId = id;
+                            connection.Insert(orderItem, transaction);
+                        }
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+
+        }
+
     }
 }

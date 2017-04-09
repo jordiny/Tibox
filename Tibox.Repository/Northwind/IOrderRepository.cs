@@ -11,5 +11,6 @@ namespace Tibox.Repository.Northwind
     {
         Order OrderWithOrderItems(int id);
         Order OrderByOrderNumber(string orderNumber);
+        bool SaveOrderAndOrderItems(Order order, IEnumerable<OrderItem> items);
     }
 }
