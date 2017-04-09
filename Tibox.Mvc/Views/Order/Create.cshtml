@@ -1,67 +1,86 @@
-﻿@model Tibox.Mvc.Models.OrderViewModel
-
-@{
-    ViewBag.Title = "Create";
-}
-
+﻿ 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
+
+<h4>Order</h4>
+<hr>
+<div class="form-horizontal">
     
-    <div class="form-horizontal">
-        <h4>Order</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Order.OrderDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Order.OrderDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Order.OrderDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Order.OrderNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Order.OrderNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Order.OrderNumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Order.CustomerId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-          
-                @Html.DropDownListFor(model => model.Order.CustomerId, Model.Customers.Select(
-               c => new SelectListItem { Value = c.Id.ToString(), Text = $"{c.FirstName} {c.LastName}" }),
-
-               new { @class="form-control"} )
-
-
-
-
-                @Html.ValidationMessageFor(model => model.Order.CustomerId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Order.TotalAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Order.TotalAmount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Order.TotalAmount, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+ 
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Order_OrderDate">OrderDate</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" data-val="true" data-val-date="The field OrderDate must be a date." 
+                   data-val-required="El campo OrderDate es obligatorio." id="OrderDate" name="OrderDate" value="02/04/2017 02:58:31 p.m." type="datetime">
+            <span class="field-validation-valid text-danger" data-valmsg-for="Order.OrderDate" data-valmsg-replace="true"></span>
         </div>
     </div>
-}
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Order_OrderNumber">OrderNumber</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="OrderNumber" name="OrderNumber" value="" type="text">
+            <span class="field-validation-valid text-danger" data-valmsg-for="Order.OrderNumber" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Order_CustomerId">CustomerId</label>
+        <div class="col-md-10">
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+            <select class="form-control" data-val="true" data-val-number="The field CustomerId must be a number." data-val-required="El campo CustomerId es obligatorio." id="CustomerId" name="CustomerId"></select>
+
+
+            <span class="field-validation-valid text-danger" data-valmsg-for="Order.CustomerId" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Order_TotalAmount">TotalAmount</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" data-val="true" data-val-number="The field TotalAmount must be a number." id="TotalAmount" name="Order.TotalAmount" value="" type="text">
+            <span class="field-validation-valid text-danger" data-valmsg-for="Order.TotalAmount" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input value="Create" class="btn btn-default" type="submit" id="Save">
+        </div>
+    </div>
+    <div class="form-horizontal">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Pruduct</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr id="contentRow">
+                    <td>
+                        <select id="product" class="product form-control"></select>
+                    </td>
+                    <td>
+                        <input type="number" id="unitPrice" class="unitPrice form-control" />
+
+                    </td>
+                    <td>
+                        <input type="number" id="quantity" class="quantity form-control" />
+
+                    </td>
+                    <td>
+                        <input type="button" id="addItemButton" class="btn btn-success" value="Add"  />
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+
+<div class="form-horizontal">
+    <table id="orderItemList" class="table table-responsive">
+        </table>
+    </div>
+
+        <script src="~/Scripts/app/order/order.js"></script>

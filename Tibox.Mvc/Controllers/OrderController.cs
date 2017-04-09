@@ -36,5 +36,21 @@ namespace Tibox.Mvc.Controllers
             var id = _unit.Orders.Insert(order);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public JsonResult Save(OrderViewModel model)
+        {
+            if (!ModelState.IsValid) return Json("Error");
+
+            var id = _unit.Orders.Insert(model.Order);
+            model.OrderItems.Select(oi => { oi.OrderId = id; return oi; }).ToList();
+
+            foreach (var orderItem in model.OrderItems)
+            {
+                _unit.OrderItems.Insert(orderItem);
+            }
+
+            return Json("ok");
+        }
     }
 }

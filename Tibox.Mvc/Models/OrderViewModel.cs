@@ -9,7 +9,7 @@ namespace Tibox.Mvc.Models
     public class OrderViewModel
     {
         public Order Order { get; set; }
-        //public IList<OrderItem> OrderItems { get; set; }
+        public IList<OrderItem> OrderItems { get; set; }
         public IEnumerable<Customer> Customers { get; set; }
     }
 }

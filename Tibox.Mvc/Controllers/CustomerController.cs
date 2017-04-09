@@ -81,5 +81,12 @@ namespace Tibox.Mvc.Controllers
             var endRecord = page * rows;
             return PartialView(_unit.Customers.PagedList(startRecord, endRecord));
         }
+
+        public JsonResult Customers()
+        {
+
+            var customers = _unit.Customers.GetAll();
+            return Json(customers, JsonRequestBehavior.AllowGet);
+        }
     }
 }
